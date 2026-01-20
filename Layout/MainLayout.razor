@@ -1,0 +1,27 @@
+﻿@inherits LayoutComponentBase
+@inject IJSRuntime JS
+
+<canvas id="gpuCanvas"></canvas>
+
+<div class="home-content">
+    @Body
+</div>
+
+
+
+
+<div class="swipeText">Hold and swipe up</div>
+
+@code {
+    // Ta metoda se pokliče, ko se stran v celoti nariše
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Pokličemo tvojo funkcijo iz webgpu-logic.js
+            // Ime funkcije mora biti točno takšno, kot si ga izvozil (window.startMyWebGPU)
+            await JS.InvokeVoidAsync("startMyWebGPU", "gpuCanvas");
+        }
+    }
+}
+
