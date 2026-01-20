@@ -46,7 +46,6 @@ const bgShader = commonVertexShader + `
         let lineThickness = 0.03; 
         let dist = abs(worldP.y - lineY);
         
-        // Maska: 1.0 na črti, 0.0 drugje
         let mask = 1.0 - smoothstep(lineThickness - 0.002, lineThickness, dist);
         
         let lineColor = mix(vec3f(0, 0.529, 1), vec3f(0.1, 0.529, 1), uv.y);
@@ -472,4 +471,5 @@ async function initWebGPU(canvasId) {
 }
 
 window.startMyWebGPU = initWebGPU;  
+
 
